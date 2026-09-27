@@ -296,7 +296,7 @@ body.menu-open{overflow:hidden}
 <body>
 
 <!-- ================= HEADER ================= -->
-<header class="header" id="top">
+<header class="header">
   <div class="wrap">
     <a href="#top" class="brand" aria-label="D'Elite Prestige Tax Services home">
       <img class="logo" src="https://raw.githubusercontent.com/creativerichee/delite-prestige-tax/main/assets/d%27elite-prestige-logo.png" alt="D'Elite Prestige Tax Services" width="330" height="82">
@@ -324,7 +324,7 @@ body.menu-open{overflow:hidden}
 <main>
 
 <!-- ================= HERO ================= -->
-<section class="hero" aria-label="Introduction">
+<section class="hero" id="top" aria-label="Introduction">
   <div class="wrap">
     <div class="hero__card photo">
       <div class="hero__content">
@@ -636,6 +636,14 @@ body.menu-open{overflow:hidden}
 </footer>
 
 <script>
+  // Back to top / Home / logo: always scroll to the very top
+  document.querySelectorAll('a[href="#top"]').forEach(a => a.addEventListener('click', e => {
+    e.preventDefault();
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+    history.replaceState(null, '', location.pathname + location.search);
+  }));
+
   // Mobile menu
   const header = document.querySelector('.header');
   const menuBtn = document.querySelector('.menu-btn');
